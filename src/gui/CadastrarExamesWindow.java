@@ -117,5 +117,17 @@ public class CadastrarExamesWindow extends JFrame {
 		textArea.setForeground(Color.BLACK);
 		textArea.setBounds(79, 165, 254, 63);
 		contentPane.add(textArea);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaInicialWindow janelaTelaInicial = new TelaInicialWindow();
+				janelaTelaInicial.setVisible(true);
+				dispose();
+			}
+		});
+		btnVoltar.setFont(new Font("Arial", Font.PLAIN, 12));
+		btnVoltar.setBounds(20, 237, 89, 23);
+		contentPane.add(btnVoltar);
 	}
 }

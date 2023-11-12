@@ -85,5 +85,17 @@ public class CadastrarEspecialidadeWindow extends JFrame {
 		lblCadastroDeEspecialidade.setFont(new Font("Arial", Font.BOLD, 18));
 		lblCadastroDeEspecialidade.setBounds(57, 11, 276, 34);
 		contentPane.add(lblCadastroDeEspecialidade);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaInicialWindow janelaTelaInicial = new TelaInicialWindow();
+				janelaTelaInicial.setVisible(true);
+				dispose();
+			}
+		});
+		btnVoltar.setFont(new Font("Arial", Font.PLAIN, 12));
+		btnVoltar.setBounds(20, 218, 89, 23);
+		contentPane.add(btnVoltar);
 	}
 }

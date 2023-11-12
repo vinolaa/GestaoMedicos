@@ -11,6 +11,8 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CadastrarMedicoWindow extends JFrame {
 
@@ -108,5 +110,17 @@ public class CadastrarMedicoWindow extends JFrame {
 		lblCadastroDeMdico.setFont(new Font("Arial", Font.BOLD, 18));
 		lblCadastroDeMdico.setBounds(111, 11, 189, 34);
 		contentPane.add(lblCadastroDeMdico);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaInicialWindow janelaTelaInicial = new TelaInicialWindow();
+				janelaTelaInicial.setVisible(true);
+				dispose();
+			}
+		});
+		btnVoltar.setFont(new Font("Arial", Font.PLAIN, 12));
+		btnVoltar.setBounds(10, 218, 89, 23);
+		contentPane.add(btnVoltar);
 	}
 }

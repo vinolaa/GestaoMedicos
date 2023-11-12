@@ -11,12 +11,14 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AgendarConsultaWindow extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField txtNome;
+	private JTextField txtPaciente;
 	private JTextField txtMedico;
 
 	/**
@@ -47,9 +49,9 @@ public class AgendarConsultaWindow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNome = new JLabel("Nome:");
+		JLabel lblNome = new JLabel("Paciente:");
 		lblNome.setFont(new Font("Arial", Font.PLAIN, 12));
-		lblNome.setBounds(10, 59, 49, 14);
+		lblNome.setBounds(10, 59, 61, 14);
 		contentPane.add(lblNome);
 		
 		JLabel lblMedico = new JLabel("Médico:");
@@ -75,10 +77,10 @@ public class AgendarConsultaWindow extends JFrame {
 		txtHora.setBounds(241, 133, 80, 20);
 		contentPane.add(txtHora);
 		
-		txtNome = new JTextField();
-		txtNome.setBounds(51, 56, 270, 20);
-		contentPane.add(txtNome);
-		txtNome.setColumns(10);
+		txtPaciente = new JTextField();
+		txtPaciente.setBounds(73, 56, 248, 20);
+		contentPane.add(txtPaciente);
+		txtPaciente.setColumns(10);
 		
 		txtMedico = new JTextField();
 		txtMedico.setColumns(10);
@@ -95,5 +97,17 @@ public class AgendarConsultaWindow extends JFrame {
 		lblAgendarConsulta.setFont(new Font("Arial", Font.BOLD, 18));
 		lblAgendarConsulta.setBounds(100, 11, 174, 34);
 		contentPane.add(lblAgendarConsulta);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaInicialWindow janelaTelaInicial = new TelaInicialWindow();
+				janelaTelaInicial.setVisible(true);
+				dispose();
+			}
+		});
+		btnVoltar.setFont(new Font("Arial", Font.PLAIN, 12));
+		btnVoltar.setBounds(10, 189, 89, 23);
+		contentPane.add(btnVoltar);
 	}
 }

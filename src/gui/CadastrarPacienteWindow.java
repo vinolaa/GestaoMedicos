@@ -17,14 +17,15 @@ import java.awt.Color;
 import javax.swing.JRadioButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFormattedTextField.AbstractFormatter;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CadastrarPacienteWindow extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField texNome;
+	private JTextField txtEndereco;
 
 	/**
 	 * Launch the application.
@@ -75,20 +76,15 @@ public class CadastrarPacienteWindow extends JFrame {
 		lblTelefone.setBounds(162, 96, 69, 14);
 		contentPane.add(lblTelefone);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(56, 56, 312, 20);
-		contentPane.add(textField);
+		texNome = new JTextField();
+		texNome.setColumns(10);
+		texNome.setBounds(56, 56, 312, 20);
+		contentPane.add(texNome);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(222, 93, 146, 20);
-		contentPane.add(textField_2);
-		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(75, 210, 293, 20);
-		contentPane.add(textField_3);
+		txtEndereco = new JTextField();
+		txtEndereco.setColumns(10);
+		txtEndereco.setBounds(75, 210, 293, 20);
+		contentPane.add(txtEndereco);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -135,5 +131,21 @@ public class CadastrarPacienteWindow extends JFrame {
 		JComboBox cbPagamento = new JComboBox();
 		cbPagamento.setBounds(234, 170, 134, 18);
 		contentPane.add(cbPagamento);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaInicialWindow janelaTelaInicial = new TelaInicialWindow();
+				janelaTelaInicial.setVisible(true);
+				dispose();
+			}
+		});
+		btnVoltar.setFont(new Font("Arial", Font.PLAIN, 12));
+		btnVoltar.setBounds(10, 245, 89, 23);
+		contentPane.add(btnVoltar);
+		
+		JFormattedTextField txtTelefone = new JFormattedTextField();
+		txtTelefone.setBounds(222, 93, 146, 20);
+		contentPane.add(txtTelefone);
 	}
 }
