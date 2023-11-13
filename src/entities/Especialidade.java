@@ -4,6 +4,10 @@ public class Especialidade {
 	private int codigo;
 	private String nome;
 
+	public Especialidade() {
+
+	}
+
 	public Especialidade(int codigo, String nome) {
 
 		this.codigo = codigo;
@@ -25,5 +29,10 @@ public class Especialidade {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
+	@Override
+    public String toString() {
+        return nome;
+    }
 
 }

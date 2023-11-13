@@ -4,6 +4,10 @@ public class Medico extends Pessoa {
 	private int crm;
 	private Especialidade especialidade;
 
+	public Medico() {
+		
+	}
+	
 	public Medico(String nome, String endereco, String telefone, int crm, Especialidade especialidade) {
 		super(nome, endereco, telefone);
 		this.crm = crm;
@@ -24,6 +28,11 @@ public class Medico extends Pessoa {
 
 	public void setEspecialidade(Especialidade especialidade) {
 		this.especialidade = especialidade;
+	}
+
+	@Override
+	public String toString() {
+		return super.toString() + "Medico [crm=" + crm + ", especialidade=" + especialidade + "]";
 	}
 
 }

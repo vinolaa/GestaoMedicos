@@ -7,6 +7,10 @@ public class Consulta {
 	private Medico medico;
 	private Date horarioConsulta;
 
+	public Consulta() {
+		
+	}
+	
 	public Consulta(Paciente paciente, Medico medico, Date horarioConsulta) {
 		super();
 		this.paciente = paciente;

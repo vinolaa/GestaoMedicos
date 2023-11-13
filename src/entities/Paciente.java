@@ -1,14 +1,20 @@
 package entities;
 
+import java.sql.Date;
+
 public class Paciente extends Pessoa {
 
 	private String foto;
-	private String dataNascimento;
+	private Date dataNascimento;
 	private String sexo;
-	private String formaPagamento;
+	private int formaPagamento;
 
-	public Paciente(String nome, String endereco, String telefone, String foto, String dataNascimento, String sexo,
-			String formaPagamento) {
+	public Paciente() {
+
+	}
+
+	public Paciente(String nome, String endereco, String telefone, String foto, Date dataNascimento, String sexo,
+			int formaPagamento) {
 		super(nome, endereco, telefone);
 		this.foto = foto;
 		this.dataNascimento = dataNascimento;
@@ -24,11 +30,11 @@ public class Paciente extends Pessoa {
 		this.foto = foto;
 	}
 
-	public String getDataNascimento() {
+	public Date getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(String dataNascimento) {
+	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 
@@ -40,12 +46,18 @@ public class Paciente extends Pessoa {
 		this.sexo = sexo;
 	}
 
-	public String getFormaPagamento() {
+	public int getFormaPagamento() {
 		return formaPagamento;
 	}
 
-	public void setFormaPagamento(String formaPagamento) {
+	public void setFormaPagamento(int formaPagamento) {
 		this.formaPagamento = formaPagamento;
+	}
+
+	@Override
+	public String toString() {
+		return super.toString() + "Paciente [foto=" + foto + ", dataNascimento=" + dataNascimento + ", sexo=" + sexo
+				+ ", formaPagamento=" + formaPagamento + "]";
 	}
 
 }
