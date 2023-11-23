@@ -197,8 +197,9 @@ public class CadastrarMedicoWindow extends JFrame {
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaInicialWindow janelaTelaInicial = new TelaInicialWindow();
-				janelaTelaInicial.setVisible(true);
+				MedicoWindow janelaMedico = new MedicoWindow();
+				janelaMedico.setVisible(true);
+				janelaMedico.setLocationRelativeTo(null);
 				dispose();
 			}
 		});

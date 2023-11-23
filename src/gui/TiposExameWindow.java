@@ -20,6 +20,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 import entities.Exame;
 import service.ExameService;
@@ -31,9 +32,6 @@ public class TiposExameWindow extends JFrame {
 	private JTable tblExames;
 	private ExameService exameService;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -89,7 +87,7 @@ public class TiposExameWindow extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblTitulo = new JLabel("Exames oferecidos pela clínica");
-		lblTitulo.setBounds(21, 11, 218, 18);
+		lblTitulo.setBounds(21, 11, 259, 18);
 		lblTitulo.setFont(new Font("Arial", Font.BOLD, 15));
 		contentPane.add(lblTitulo);
 		
@@ -105,14 +103,21 @@ public class TiposExameWindow extends JFrame {
 		
 		tblExames = new JTable();
 		scrollPane.setViewportView(tblExames);
-		tblExames.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Código", "Nome", "Valor", "Orientações"}));
 		
+		tblExames.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Cod", "Nome", "Valor", "Orientações"}));
+		int[] columnWidths = { 10, 100, 30, 150 }; // tamanho das colunas
+
+        for (int i = 0; i < columnWidths.length; i++) {
+            TableColumn column = tblExames.getColumnModel().getColumn(i);
+            column.setPreferredWidth(columnWidths[i]);
+        }
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				VerificarExamesWindow verificarExamesWindow = new VerificarExamesWindow();
 				verificarExamesWindow.setVisible(true);
+				verificarExamesWindow.setLocationRelativeTo(null);
 				dispose();
 			}
 		});

@@ -36,7 +36,7 @@ public class TelaInicialWindow extends JFrame {
 
 	public void initComponents() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 401, 363);
+		setBounds(100, 100, 383, 193);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -45,56 +45,8 @@ public class TelaInicialWindow extends JFrame {
 
 		JButton btnGerarRelatorio = new JButton("Gerar Relatório");
 		btnGerarRelatorio.setFont(new Font("Arial", Font.PLAIN, 12));
-		btnGerarRelatorio.setBounds(108, 267, 169, 23);
+		btnGerarRelatorio.setBounds(10, 109, 169, 23);
 		contentPane.add(btnGerarRelatorio);
-
-		JButton btnCadastrarMedico = new JButton("Cadastrar Médico");
-		btnCadastrarMedico.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CadastrarMedicoWindow janelaCadastroMedico = new CadastrarMedicoWindow();
-				janelaCadastroMedico.setVisible(true);
-				dispose();
-			}
-		});
-		btnCadastrarMedico.setFont(new Font("Arial", Font.PLAIN, 12));
-		btnCadastrarMedico.setBounds(10, 159, 169, 23);
-		contentPane.add(btnCadastrarMedico);
-		
-		JButton btnCadastrarEspecialidade = new JButton("Cadastrar Especialidade");
-		btnCadastrarEspecialidade.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        CadastrarEspecialidadeWindow janelaCadastroEspecialidade = new CadastrarEspecialidadeWindow();
-		        janelaCadastroEspecialidade.setVisible(true);
-		        dispose();
-		    }
-		});
-		btnCadastrarEspecialidade.setFont(new Font("Arial", Font.PLAIN, 12));
-		btnCadastrarEspecialidade.setBounds(10, 217, 169, 23);
-		contentPane.add(btnCadastrarEspecialidade);
-
-		JButton btnAgendarConsulta = new JButton("Agendar Consulta");
-		btnAgendarConsulta.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				AgendarConsultaWindow janelaAgendarConsulta = new AgendarConsultaWindow();
-				janelaAgendarConsulta.setVisible(true);
-				dispose();
-			}
-		});
-		btnAgendarConsulta.setFont(new Font("Arial", Font.PLAIN, 12));
-		btnAgendarConsulta.setBounds(189, 110, 179, 23);
-		contentPane.add(btnAgendarConsulta);
-
-		JButton btnVerificarExames = new JButton("Verificar Exames");
-		btnVerificarExames.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				VerificarExamesWindow janelaVerificarExames = new VerificarExamesWindow();
-				janelaVerificarExames.setVisible(true);
-				dispose();
-			}
-		});
-		btnVerificarExames.setFont(new Font("Arial", Font.PLAIN, 12));
-		btnVerificarExames.setBounds(189, 159, 179, 23);
-		contentPane.add(btnVerificarExames);
 
 		JLabel lblTitulo = new JLabel("Gestão de Médicos");
 		lblTitulo.setFont(new Font("Arial", Font.BOLD, 16));
@@ -106,23 +58,38 @@ public class TelaInicialWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				AdicionarPagamentoWindow janelaAdicionarPagamento = new AdicionarPagamentoWindow();
 				janelaAdicionarPagamento.setVisible(true);
+				janelaAdicionarPagamento.setLocationRelativeTo(null);
 				dispose();
 			}
 		});
 		btnAdicionarPagamento.setFont(new Font("Arial", Font.PLAIN, 12));
-		btnAdicionarPagamento.setBounds(189, 217, 179, 23);
+		btnAdicionarPagamento.setBounds(189, 109, 169, 23);
 		contentPane.add(btnAdicionarPagamento);
 		
-		JButton btnCadastrarPaciente = new JButton("Cadastrar Paciente");
-		btnCadastrarPaciente.addActionListener(new ActionListener() {
+		JButton btnPaciente = new JButton("Paciente");
+		btnPaciente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CadastrarPacienteWindow janelaCadastroPaciente = new CadastrarPacienteWindow();
-				janelaCadastroPaciente.setVisible(true);
+				PacienteWindow janelaPaciente = new PacienteWindow();
+				janelaPaciente.setVisible(true);
+				janelaPaciente.setLocationRelativeTo(null);
 				dispose();
 			}
 		});
-		btnCadastrarPaciente.setFont(new Font("Arial", Font.PLAIN, 12));
-		btnCadastrarPaciente.setBounds(10, 110, 169, 23);
-		contentPane.add(btnCadastrarPaciente);
+		btnPaciente.setFont(new Font("Arial", Font.BOLD, 14));
+		btnPaciente.setBounds(10, 62, 169, 23);
+		contentPane.add(btnPaciente);
+		
+		JButton btnMdico = new JButton("Médico");
+		btnMdico.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MedicoWindow janelaMedico = new MedicoWindow();
+				janelaMedico.setVisible(true);
+				janelaMedico.setLocationRelativeTo(null);
+				dispose();
+			}
+		});
+		btnMdico.setFont(new Font("Arial", Font.BOLD, 14));
+		btnMdico.setBounds(189, 62, 169, 23);
+		contentPane.add(btnMdico);
 	}
 }

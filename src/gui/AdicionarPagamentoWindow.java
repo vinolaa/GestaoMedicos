@@ -101,6 +101,7 @@ public class AdicionarPagamentoWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				TelaInicialWindow janelaTelaInicial = new TelaInicialWindow();
 				janelaTelaInicial.setVisible(true);
+				janelaTelaInicial.setLocationRelativeTo(null);
 				dispose();
 			}
 		});

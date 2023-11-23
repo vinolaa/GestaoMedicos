@@ -254,8 +254,9 @@ public class CadastrarPacienteWindow extends JFrame {
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaInicialWindow janelaTelaInicial = new TelaInicialWindow();
-				janelaTelaInicial.setVisible(true);
+				PacienteWindow janelaPaciente = new PacienteWindow();
+				janelaPaciente.setVisible(true);
+				janelaPaciente.setLocationRelativeTo(null);
 				dispose();
 			}
 		});

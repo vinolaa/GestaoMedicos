@@ -164,9 +164,9 @@ public class VerificarExamesWindow extends JFrame {
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				TelaInicialWindow janelaTelaInicial = new TelaInicialWindow();
 				janelaTelaInicial.setVisible(true);
+				janelaTelaInicial.setLocationRelativeTo(null);
 				dispose();
 			}
 		});
@@ -177,9 +177,10 @@ public class VerificarExamesWindow extends JFrame {
 		JButton btnTiposExame = new JButton("Tipos de Exame");
 		btnTiposExame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+		
 				TiposExameWindow tiposExameWindow = new TiposExameWindow();
 				tiposExameWindow.setVisible(true);
+				tiposExameWindow.setLocationRelativeTo(null);
 				dispose();
 			}
 		});
