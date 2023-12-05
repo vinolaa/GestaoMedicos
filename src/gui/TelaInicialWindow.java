@@ -50,7 +50,7 @@ public class TelaInicialWindow extends JFrame {
 
 		JLabel lblTitulo = new JLabel("Gestão de Médicos");
 		lblTitulo.setFont(new Font("Arial", Font.BOLD, 16));
-		lblTitulo.setBounds(130, 21, 147, 14);
+		lblTitulo.setBounds(121, 21, 147, 14);
 		contentPane.add(lblTitulo);
 		
 		JButton btnAdicionarPagamento = new JButton("Adicionar Pagamento");

@@ -68,13 +68,13 @@ public class PacienteWindow extends JFrame {
 			}
 		});
 		btnAgendarConsulta.setFont(new Font("Arial", Font.PLAIN, 12));
-		btnAgendarConsulta.setBounds(192, 51, 150, 23);
+		btnAgendarConsulta.setBounds(192, 94, 150, 23);
 		contentPane.add(btnAgendarConsulta);
 		
-		JButton btnVerificarExames = new JButton("Verificar Exames");
+		JButton btnVerificarExames = new JButton("Agendar Exames");
 		btnVerificarExames.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VerificarExamesWindow janelaVerificarExames = new VerificarExamesWindow();
+				AgendarExamesWindow janelaVerificarExames = new AgendarExamesWindow();
 				janelaVerificarExames.setVisible(true);
 				janelaVerificarExames.setLocationRelativeTo(null);
 				dispose();
@@ -99,12 +99,12 @@ public class PacienteWindow extends JFrame {
 		
 		JButton btnExames = new JButton("Consultas");
 		btnExames.setFont(new Font("Arial", Font.PLAIN, 12));
-		btnExames.setBounds(10, 135, 150, 23);
+		btnExames.setBounds(192, 135, 150, 23);
 		contentPane.add(btnExames);
 		
 		JButton btnConsultas = new JButton("Exames");
 		btnConsultas.setFont(new Font("Arial", Font.PLAIN, 12));
-		btnConsultas.setBounds(192, 135, 150, 23);
+		btnConsultas.setBounds(10, 135, 150, 23);
 		contentPane.add(btnConsultas);
 	}
 }

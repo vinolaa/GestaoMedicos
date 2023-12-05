@@ -115,7 +115,7 @@ public class TiposExameWindow extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				VerificarExamesWindow verificarExamesWindow = new VerificarExamesWindow();
+				AgendarExamesWindow verificarExamesWindow = new AgendarExamesWindow();
 				verificarExamesWindow.setVisible(true);
 				verificarExamesWindow.setLocationRelativeTo(null);
 				dispose();
