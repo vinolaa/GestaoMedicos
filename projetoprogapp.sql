@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 14/11/2023 às 18:28
+-- Tempo de geração: 05/12/2023 às 17:37
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -73,9 +73,9 @@ CREATE TABLE `exame` (
 --
 
 INSERT INTO `exame` (`codigo`, `nome`, `valor`, `orientacoes`) VALUES
-(1, 'Hemograma', 90, 'não ingerir bebidas alcoólicas 72 horas antes do exame, evitar exercícios físicos na véspera e comparecer ao laboratório com sua identidade para abertura de ficha. '),
+(1, 'Hemograma', 90, 'Não ingerir bebidas alcoólicas 72 horas antes do exame, evitar exercícios físicos na véspera e comparecer ao laboratório com sua identidade para abertura de ficha. '),
 (2, 'Glicemia em Jejum', 120, 'É necessário estar de 8 a 12 horas de jejum, sem consumir nenhum tipo de alimento ou bebidas, apenas água é permitido'),
-(3, 'Eletrocardiograma', 150, 'se alimentar normalmente antes do exame. Você também pode ingerir líquidos à vontade, mas bebidas alcoólicas não são recomendadas');
+(3, 'Eletrocardiograma', 150, 'Se alimentar normalmente antes do exame. Você também pode ingerir líquidos à vontade, mas bebidas alcoólicas não são recomendadas');
 
 -- --------------------------------------------------------
 
@@ -87,6 +87,7 @@ CREATE TABLE `exame_agendado` (
   `nome_paciente` varchar(50) NOT NULL,
   `crm` int(11) NOT NULL,
   `data` date NOT NULL,
+  `hora` time NOT NULL,
   `valor_pago` double NOT NULL,
   `cod_exame_agendado` int(11) NOT NULL,
   `cod_exame` int(11) NOT NULL
@@ -96,8 +97,10 @@ CREATE TABLE `exame_agendado` (
 -- Despejando dados para a tabela `exame_agendado`
 --
 
-INSERT INTO `exame_agendado` (`nome_paciente`, `crm`, `data`, `valor_pago`, `cod_exame_agendado`, `cod_exame`) VALUES
-('Gabriel', 1234, '2023-03-11', 50, 1, 1);
+INSERT INTO `exame_agendado` (`nome_paciente`, `crm`, `data`, `hora`, `valor_pago`, `cod_exame_agendado`, `cod_exame`) VALUES
+('Gabriel', 123456, '2023-03-11', '09:30:00', 50, 1, 1),
+('Caio', 998877, '2023-12-04', '10:00:00', 50, 2, 1),
+('Caio', 123456, '2023-12-05', '14:30:00', 80, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -141,7 +144,8 @@ CREATE TABLE `medico` (
 --
 
 INSERT INTO `medico` (`crm`, `nome`, `endereco`, `telefone`, `cod_especialidade`) VALUES
-(123456, 'Alan', 'Rua XYZ', '95261-2123', 2);
+(123456, 'Alan', 'Rua XYZ', '95261-2123', 2),
+(998877, 'Matheus', 'Rua Dois', '96587-9144', 2);
 
 -- --------------------------------------------------------
 
@@ -240,7 +244,7 @@ ALTER TABLE `exame`
 -- AUTO_INCREMENT de tabela `exame_agendado`
 --
 ALTER TABLE `exame_agendado`
-  MODIFY `cod_exame_agendado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `cod_exame_agendado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `forma_pagamento`
