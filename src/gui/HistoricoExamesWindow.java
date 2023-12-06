@@ -173,9 +173,9 @@ public class HistoricoExamesWindow extends JFrame {
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MedicoWindow janelaMedico = new MedicoWindow();
-				janelaMedico.setVisible(true);
-				janelaMedico.setLocationRelativeTo(null);
+				GerarRelatorioWindow janelaRelatorio = new GerarRelatorioWindow();
+				janelaRelatorio.setVisible(true);
+				janelaRelatorio.setLocationRelativeTo(null);
 				dispose();
 			}
 		});
