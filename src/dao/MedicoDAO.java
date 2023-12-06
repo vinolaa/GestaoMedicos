@@ -15,7 +15,7 @@ public class MedicoDAO {
 
 		this.conn = conn;
 	}
-
+	
 	public void cadastrar(Medico medico) throws SQLException {
 
 		PreparedStatement st = null;
@@ -38,7 +38,34 @@ public class MedicoDAO {
 			BancoDados.desconectar();
 		}
 	}
+	
+	public String buscarNomePorCrm(int crm) throws SQLException {
+		
+		PreparedStatement st = null;
+		ResultSet rs2 = null;
 
+		try {
+
+			st = conn.prepareStatement("SELECT nome FROM medico WHERE crm = ?");
+			st.setInt(1, crm);
+			rs2 = st.executeQuery();
+			
+			if (rs2.next()) {
+				
+				return rs2.getString("nome");
+			} else {
+				return "";
+			}
+
+
+		} finally {
+
+			BancoDados.finalizarStatement(st);
+			BancoDados.finalizarResultSet(rs2);
+			BancoDados.desconectar();
+		}
+	}
+	
 	public int buscarCrmPorNome(String nome) throws SQLException {
 		PreparedStatement st = null;
 		ResultSet rs = null;
@@ -59,29 +86,6 @@ public class MedicoDAO {
 			BancoDados.finalizarStatement(st);
 			BancoDados.finalizarResultSet(rs);
 			BancoDados.desconectar();
-		}
-	}
-	
-	public String buscarNomePorCrm(int crm) throws SQLException {
-		PreparedStatement st = null;
-		ResultSet rs = null;
-
-		try {
-			st = conn.prepareStatement("SELECT * FROM medico WHERE crm = ?");
-			st.setInt(1, crm);
-			rs = st.executeQuery();
-
-			if (rs.next()) {
-				return rs.getString("nome");
-			} else {
-
-				return "";
-			}
-
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-			throw e; 
 		}
 	}
 

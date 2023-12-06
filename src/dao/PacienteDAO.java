@@ -64,7 +64,7 @@ public class PacienteDAO {
 			BancoDados.desconectar();
 		}
 	}
-
+	
 	public String buscarNomePorCodigo(int cod_paciente) throws SQLException {
 		PreparedStatement st = null;
 		ResultSet rs = null;

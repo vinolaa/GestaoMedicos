@@ -2,7 +2,6 @@ package entities;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.time.LocalTime;
 
 public class ExameAgendado {
 

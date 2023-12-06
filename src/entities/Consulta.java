@@ -8,13 +8,15 @@ public class Consulta {
 	private String medico;
 	private Date dataConsulta;
 	private Time horaCosulta;
+	private int codigoConsulta;
+	private int crm;
 
 	public Consulta() {
 
 	}
 
 	public Consulta(String paciente, String medico, Date horarioConsulta) {
-
+	
 		this.paciente = paciente;
 		this.medico = medico;
 		this.dataConsulta = horarioConsulta;
@@ -52,10 +54,26 @@ public class Consulta {
 		this.horaCosulta = horaCosulta;
 	}
 
+	public int getCodigoConsulta() {
+		return codigoConsulta;
+	}
+
+	public void setCodigoConsulta(int codigoConsulta) {
+		this.codigoConsulta = codigoConsulta;
+	}
+
+	public int getCrm() {
+		return crm;
+	}
+
+	public void setCrm(int crm) {
+		this.crm = crm;
+	}
+
 	@Override
 	public String toString() {
 		return "Consulta [paciente=" + paciente + ", medico=" + medico + ", dataConsulta=" + dataConsulta
-				+ ", horaCosulta=" + horaCosulta + "]";
+				+ ", horaCosulta=" + horaCosulta + ", codigoConsulta=" + codigoConsulta + ", crm=" + crm + "]";
 	}
 
 }
