@@ -31,6 +31,11 @@ public class MedicoWindow extends JFrame {
 	}
 
 	public MedicoWindow() {
+		
+		this.initComponents();
+	}
+	
+	public void initComponents() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 208, 240);
 		contentPane = new JPanel();

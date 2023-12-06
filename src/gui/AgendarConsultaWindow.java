@@ -6,13 +6,24 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
+
+import entities.ExameAgendado;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.awt.event.ActionEvent;
 
 public class AgendarConsultaWindow extends JFrame {
@@ -109,6 +120,11 @@ public class AgendarConsultaWindow extends JFrame {
 		contentPane.add(txtMedico);
 
 		JButton btnAgendar = new JButton("Agendar");
+		btnAgendar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		btnAgendar.setFont(new Font("Arial", Font.PLAIN, 12));
 		btnAgendar.setBounds(142, 189, 89, 23);
 		contentPane.add(btnAgendar);

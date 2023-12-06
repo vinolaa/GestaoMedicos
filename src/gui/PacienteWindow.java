@@ -31,6 +31,11 @@ public class PacienteWindow extends JFrame {
 	}
 
 	public PacienteWindow() {
+		
+		this.initComponents();
+	}
+	
+	public void initComponents() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 369, 254);
 		contentPane = new JPanel();
