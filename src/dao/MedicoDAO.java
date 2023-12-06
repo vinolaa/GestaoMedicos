@@ -58,13 +58,13 @@ public class MedicoDAO {
 			}
 
 
-		} finally {
+		} catch (SQLException e) {
 
-			BancoDados.finalizarStatement(st);
-			BancoDados.finalizarResultSet(rs2);
-			BancoDados.desconectar();
+			e.printStackTrace();
+			throw e;
 		}
 	}
+	
 	
 	public int buscarCrmPorNome(String nome) throws SQLException {
 		PreparedStatement st = null;
@@ -82,10 +82,10 @@ public class MedicoDAO {
 				return -1;
 			}
 
-		} finally {
-			BancoDados.finalizarStatement(st);
-			BancoDados.finalizarResultSet(rs);
-			BancoDados.desconectar();
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+			throw e;
 		}
 	}
 

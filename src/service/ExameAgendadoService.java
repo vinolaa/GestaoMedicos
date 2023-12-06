@@ -26,15 +26,15 @@ public class ExameAgendadoService {
 		Connection conn = BancoDados.conectar();
 		return new ExameAgendadoDAO(conn).buscarTodas(crm);
 	}
-	
+
 	public List<ExameAgendado> buscarPorTipo(int tipo) throws SQLException, IOException {
-		
+
 		Connection conn = BancoDados.conectar();
 		return new ExameAgendadoDAO(conn).buscarPorTipo(tipo);
 	}
-	
+
 	public List<ExameAgendado> buscarPorNome(String nome) throws SQLException, IOException {
-		
+
 		Connection conn = BancoDados.conectar();
 		return new ExameAgendadoDAO(conn).buscarPorNome(nome);
 	}

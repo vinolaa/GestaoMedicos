@@ -92,7 +92,7 @@ public class AgendaPacienteWindow extends JFrame {
 
             if (userSelection == JFileChooser.APPROVE_OPTION) {
                 File selectedDirectory = fileChooser.getSelectedFile();
-                String filePath = new File(selectedDirectory, "relatorio_paciente.csv").getPath();
+                String filePath = new File(selectedDirectory, "relatorio_paciente_exame.txt").getPath();
 
                 FileWriter writer = new FileWriter(filePath);
 
@@ -129,7 +129,7 @@ public class AgendaPacienteWindow extends JFrame {
 
             if (userSelection == JFileChooser.APPROVE_OPTION) {
                 File selectedDirectory = fileChooser.getSelectedFile();
-                String filePath = new File(selectedDirectory, "relatorio_paciente.csv").getPath();
+                String filePath = new File(selectedDirectory, "relatorio_paciente_consulta.txt").getPath();
 
                 FileWriter writer = new FileWriter(filePath);
 

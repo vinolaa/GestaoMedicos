@@ -65,78 +65,78 @@ public class AgendaMedicoWindow extends JFrame {
 	public AgendaMedicoWindow() {
 		initComponents();
 	}
-	
+
 	private void gerarRelatorioExames() {
-        try {
-            JFileChooser fileChooser = new JFileChooser();
-            fileChooser.setDialogTitle("Salvar Relatório");
-            fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		try {
+			JFileChooser fileChooser = new JFileChooser();
+			fileChooser.setDialogTitle("Salvar Relatório");
+			fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
-            int userSelection = fileChooser.showSaveDialog(this);
+			int userSelection = fileChooser.showSaveDialog(this);
 
-            if (userSelection == JFileChooser.APPROVE_OPTION) {
-                File selectedDirectory = fileChooser.getSelectedFile();
-                String filePath = new File(selectedDirectory, "relatorio_medico.csv").getPath();
+			if (userSelection == JFileChooser.APPROVE_OPTION) {
+				File selectedDirectory = fileChooser.getSelectedFile();
+				String filePath = new File(selectedDirectory, "relatorio_medico_exame.txt").getPath();
 
-                FileWriter writer = new FileWriter(filePath);
+				FileWriter writer = new FileWriter(filePath);
 
-                writer.append("Data,Hora,Exame,Paciente,Valor\n");
+				writer.append("Data,Hora,Exame,Paciente,Valor\n");
 
-                for (ExameAgendado exameAg : listaExames) {
-                    Exame exame = exameService.buscarPorCodigo(exameAg.getCodigoExame());
-                    writer.append(String.format("%s,%s,%s,%s,%.2f\n", exameAg.getData(), exameAg.getHora(),
-                            exame.getNome(), exameAg.getNomePaciente(), exameAg.getValorPago()));
-                }
+				for (ExameAgendado exameAg : listaExames) {
+					Exame exame = exameService.buscarPorCodigo(exameAg.getCodigoExame());
+					writer.append(String.format("%s,%s,%s,%s,%.2f\n", exameAg.getData(), exameAg.getHora(),
+							exame.getNome(), exameAg.getNomePaciente(), exameAg.getValorPago()));
+				}
 
-                writer.close();
-                JOptionPane.showMessageDialog(null, "Relatório gerado com sucesso.", "Relatório de Exames",
-                        JOptionPane.INFORMATION_MESSAGE);
-            }
-        } catch (IOException | SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao gerar relatório.", "Relatório de Exames",
-                    JOptionPane.ERROR_MESSAGE);
-        } catch (NullPointerException npe) {
+				writer.close();
+				JOptionPane.showMessageDialog(null, "Relatório gerado com sucesso.", "Relatório de Exames",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+		} catch (IOException | SQLException ex) {
+			JOptionPane.showMessageDialog(null, "Erro ao gerar relatório.", "Relatório de Exames",
+					JOptionPane.ERROR_MESSAGE);
+		} catch (NullPointerException npe) {
 
-            JOptionPane.showMessageDialog(null, "Lista de exames vazia", "Relatório de Exames",
-                    JOptionPane.ERROR_MESSAGE);
-        }
-    }
-	
+			JOptionPane.showMessageDialog(null, "Lista de exames vazia", "Relatório de Exames",
+					JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
 	private void gerarRelatorioConsultas() {
-    	
-    	try {
-            JFileChooser fileChooser = new JFileChooser();
-            fileChooser.setDialogTitle("Salvar Relatório");
-            fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
-            int userSelection = fileChooser.showSaveDialog(this);
+		try {
+			JFileChooser fileChooser = new JFileChooser();
+			fileChooser.setDialogTitle("Salvar Relatório");
+			fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
-            if (userSelection == JFileChooser.APPROVE_OPTION) {
-                File selectedDirectory = fileChooser.getSelectedFile();
-                String filePath = new File(selectedDirectory, "relatorio_paciente.csv").getPath();
+			int userSelection = fileChooser.showSaveDialog(this);
 
-                FileWriter writer = new FileWriter(filePath);
+			if (userSelection == JFileChooser.APPROVE_OPTION) {
+				File selectedDirectory = fileChooser.getSelectedFile();
+				String filePath = new File(selectedDirectory, "relatorio_medico_consulta.txt").getPath();
 
-                writer.append("Data,Hora,Medico,Paciente,Codigo\n");
+				FileWriter writer = new FileWriter(filePath);
 
-                for (Consulta consulta : listaConsultas) {
-                    writer.append(String.format("%s,%s,%d,%s,%d\n", consulta.getDataConsulta(), consulta.getHoraCosulta(),
-                            consulta.getCrm(), consulta.getPaciente(), consulta.getCodigoConsulta()));
-                }
+				writer.append("Data,Hora,Paciente\n");
 
-                writer.close();
-                JOptionPane.showMessageDialog(null, "Relatório gerado com sucesso.", "Relatório de Exames",
-                        JOptionPane.INFORMATION_MESSAGE);
-            }
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao gerar relatório.", "Relatório de Exames",
-                    JOptionPane.ERROR_MESSAGE);
-        } catch (NullPointerException npe) {
+				for (Consulta consulta : listaConsultas) {
+					writer.append(String.format("%s,%s,%s,\n", consulta.getDataConsulta(), consulta.getHoraCosulta(),
+							consulta.getPaciente()));
+				}
 
-            JOptionPane.showMessageDialog(null, "Lista de exames vazia", "Relatório de Exames",
-                    JOptionPane.ERROR_MESSAGE);
-        }
-    }
+				writer.close();
+				JOptionPane.showMessageDialog(null, "Relatório gerado com sucesso.", "Relatório de Exames",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+		} catch (IOException ex) {
+			JOptionPane.showMessageDialog(null, "Erro ao gerar relatório.", "Relatório de Exames",
+					JOptionPane.ERROR_MESSAGE);
+		} catch (NullPointerException npe) {
+
+			JOptionPane.showMessageDialog(null, "Lista de exames vazia", "Relatório de Exames",
+					JOptionPane.ERROR_MESSAGE);
+		}
+	}
 
 	public void initComponents() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -213,8 +213,7 @@ public class AgendaMedicoWindow extends JFrame {
 		btnBuscar.setFont(new Font("Arial", Font.PLAIN, 12));
 		btnBuscar.setBounds(255, 10, 100, 23);
 		contentPane.add(btnBuscar);
-		
-		
+
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -227,35 +226,34 @@ public class AgendaMedicoWindow extends JFrame {
 		btnVoltar.setFont(new Font("Arial", Font.PLAIN, 12));
 		btnVoltar.setBounds(373, 10, 100, 23);
 		contentPane.add(btnVoltar);
-		
-		JButton btnGerarRelatorio = new JButton("Gerar Relatório");
-        btnGerarRelatorio.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
 
-                if (rdExame.isSelected()) {
-                	
-                	gerarRelatorioExames();
-                }
-                
-                else if (rdConsulta.isSelected()) {
-                	
-                	gerarRelatorioConsultas();
-                }
-            }
-        });
-        btnGerarRelatorio.setFont(new Font("Arial", Font.PLAIN, 12));
-        btnGerarRelatorio.setBounds(300, 37, 139, 23);
-        contentPane.add(btnGerarRelatorio);
+		JButton btnGerarRelatorio = new JButton("Gerar Relatório");
+		btnGerarRelatorio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				if (rdExame.isSelected()) {
+
+					gerarRelatorioExames();
+				}
+
+				else if (rdConsulta.isSelected()) {
+
+					gerarRelatorioConsultas();
+				}
+			}
+		});
+		btnGerarRelatorio.setFont(new Font("Arial", Font.PLAIN, 12));
+		btnGerarRelatorio.setBounds(300, 37, 139, 23);
+		contentPane.add(btnGerarRelatorio);
 	}
 
 	private void definirLargurasColunas(JTable tabela) {
-	    int[] larguras = {60, 40, 100, 150, 30};
+		int[] larguras = { 60, 40, 100, 150, 30 };
 
-	    for (int i = 0; i < Math.min(tabela.getColumnCount(), larguras.length); i++) {
-	        tabela.getColumnModel().getColumn(i).setPreferredWidth(larguras[i]);
-	    }
+		for (int i = 0; i < Math.min(tabela.getColumnCount(), larguras.length); i++) {
+			tabela.getColumnModel().getColumn(i).setPreferredWidth(larguras[i]);
+		}
 	}
-
 
 	private void atualizarTabela(List<?> lista, boolean isExame) {
 		DefaultTableModel model = (DefaultTableModel) tblAgenda.getModel();

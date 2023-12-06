@@ -10,15 +10,11 @@ import dao.ConsultaDAO;
 import entities.Consulta;
 
 public class ConsultaService {
-	
-	public ConsultaService() {}
-	
-	public List<Consulta> buscarPorNomePaciente(String nomePaciente) throws SQLException, IOException {
-		
-		Connection conn = BancoDados.conectar();
-		return new ConsultaDAO(conn).buscarPorNomePaciente(nomePaciente);
+
+	public ConsultaService() {
+
 	}
-	
+
 	public void agendar(Consulta consulta) throws SQLException, IOException {
 
 		Connection conn = BancoDados.conectar();
@@ -27,16 +23,21 @@ public class ConsultaService {
 		PacienteService pacienteService = new PacienteService();
 		conn = BancoDados.conectar();
 		int cod_paciente = pacienteService.buscarCrmPorNome(consulta.getPaciente());
-		//System.out.println("CRM: " + crm + "\n");
-		//System.out.println("Codigo: " + cod_paciente);
+		System.out.println("CRM: " + crm + "\n");
+		System.out.println("Codigo: " + cod_paciente);
 		conn = BancoDados.conectar();
 		new ConsultaDAO(conn).agendar(consulta, cod_paciente, crm);
 	}
-	
+
 	public List<Consulta> buscarTodas(int crm) throws SQLException, IOException {
 
 		Connection conn = BancoDados.conectar();
 		return new ConsultaDAO(conn).buscarTodas(crm);
 	}
 
+	public List<Consulta> buscarPorNomePaciente(String nomePaciente) throws SQLException, IOException {
+
+		Connection conn = BancoDados.conectar();
+		return new ConsultaDAO(conn).buscarPorNomePaciente(nomePaciente);
+	}
 }

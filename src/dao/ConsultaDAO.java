@@ -13,54 +13,51 @@ import service.MedicoService;
 import service.PacienteService;
 
 public class ConsultaDAO {
-	
+
 	private Connection conn;
 
 	public ConsultaDAO(Connection conn) {
 
 		this.conn = conn;
 	}
-	
+
 	public void agendar(Consulta consulta, int codigo, int crm) throws SQLException {
 
 		PreparedStatement st = null;
 
 		try {
-		    st = conn.prepareStatement("insert into consulta (cod_paciente, crm, dia, hora) values (?, ?, ?, ?)");
+			st = conn.prepareStatement("insert into consulta (cod_paciente, crm, dia, hora) values (?, ?, ?, ?)");
 
-		    st.setInt(1, codigo);
-		    st.setInt(2, crm);
-		    st.setDate(3, consulta.getDataConsulta());
-		    st.setTime(4, consulta.getHoraCosulta());
-		    
-		    st.executeUpdate();
-		    
-		    //System.out.println("Data:" + consulta.getDataConsulta());
-		    //System.out.println("Hora: " + consulta.getHoraCosulta());
+			st.setInt(1, codigo);
+			st.setInt(2, crm);
+			st.setDate(3, consulta.getDataConsulta());
+			st.setTime(4, consulta.getHoraCosulta());
+
+			st.executeUpdate();
 
 		} finally {
-		    BancoDados.finalizarStatement(st);
-		    BancoDados.desconectar();
+			BancoDados.finalizarStatement(st);
+			BancoDados.desconectar();
 		}
 	}
-	
+
 	public List<Consulta> buscarPorNomePaciente(String nome_paciente) throws SQLException, IOException {
-		
+
 		PreparedStatement st = null, st1 = null;
 		ResultSet rs = null, rs1 = null;
 
 		try {
-			
+
 			st = conn.prepareStatement("SELECT cod_paciente FROM paciente WHERE nome = ?");
 			st.setString(1, nome_paciente);
 			rs = st.executeQuery();
-			
+
 			List<Consulta> listaConsultas = new ArrayList<>();
-			
+
 			if (rs.next()) {
-				
+
 				int codigoPaciente = rs.getInt("cod_paciente");
-				
+
 				st1 = conn.prepareStatement("SELECT * FROM consulta WHERE cod_paciente = ?");
 				st1.setInt(1, codigoPaciente);
 				rs1 = st1.executeQuery();
@@ -76,7 +73,7 @@ public class ConsultaDAO {
 				}
 
 			}
-			
+
 			return listaConsultas;
 
 		} finally {
@@ -87,7 +84,7 @@ public class ConsultaDAO {
 			BancoDados.desconectar();
 		}
 	}
-	
+
 	public List<Consulta> buscarTodas(int crm) throws SQLException, IOException {
 		PreparedStatement st = null;
 		ResultSet rs = null;
@@ -107,14 +104,13 @@ public class ConsultaDAO {
 
 			while (rs.next()) {
 				Consulta consulta = new Consulta();
-				System.out.println("passouaqui");
 				codigo = rs.getInt("cod_paciente");
-				consulta.setDataConsulta(rs.getDate("dia"));
-				consulta.setHoraCosulta(rs.getTime("hora"));
 				paciente = pacienteService.buscarNomePorCodigo(codigo);
 				consulta.setPaciente(paciente);
 				medico = medicoService.buscarNomePorCrm(crm);
 				consulta.setMedico(medico);
+				consulta.setDataConsulta(rs.getDate("dia"));
+				consulta.setHoraCosulta(rs.getTime("hora"));
 
 				listaConsultas.add(consulta);
 			}
@@ -133,5 +129,6 @@ public class ConsultaDAO {
 			BancoDados.desconectar();
 		}
 	}
+
 
 }

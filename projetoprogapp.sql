@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 06/12/2023 às 15:38
+-- Tempo de geração: 06/12/2023 às 17:54
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -41,7 +41,8 @@ CREATE TABLE `consulta` (
 
 INSERT INTO `consulta` (`cod_consulta`, `cod_paciente`, `crm`, `dia`, `hora`) VALUES
 (1, 2, 998877, '2023-12-20', '15:00:00'),
-(2, 1, 998877, '2023-12-20', '14:30:00');
+(2, 1, 998877, '2023-12-20', '14:30:00'),
+(3, 4, 123456, '2023-12-20', '18:00:00');
 
 -- --------------------------------------------------------
 
@@ -61,7 +62,8 @@ CREATE TABLE `especialidade_medico` (
 INSERT INTO `especialidade_medico` (`cod_especialidade`, `nome`) VALUES
 (1, 'Cardiologista'),
 (2, 'Dermatologista'),
-(3, 'Ortopedista');
+(3, 'Ortopedista'),
+(4, 'Otorrino');
 
 -- --------------------------------------------------------
 
@@ -109,7 +111,8 @@ INSERT INTO `exame_agendado` (`nome_paciente`, `crm`, `data`, `hora`, `valor_pag
 ('Gabriel', 123456, '2023-03-11', '09:30:00', 50, 1, 1),
 ('Caio', 998877, '2023-12-04', '10:00:00', 50, 2, 1),
 ('Caio', 123456, '2023-12-05', '14:30:00', 80, 3, 2),
-('Maria', 998877, '2023-12-07', '10:30:00', 80, 4, 3);
+('Maria', 998877, '2023-12-07', '10:30:00', 80, 4, 3),
+('Lukas', 998877, '2023-12-06', '14:00:00', 90, 5, 2);
 
 -- --------------------------------------------------------
 
@@ -153,6 +156,7 @@ CREATE TABLE `medico` (
 --
 
 INSERT INTO `medico` (`crm`, `nome`, `endereco`, `telefone`, `cod_especialidade`) VALUES
+(100000, 'Pedro', 'Rua 123', '95165-1656', 4),
 (123456, 'Alan', 'Rua XYZ', '95261-2123', 2),
 (998877, 'Matheus', 'Rua Dois', '96587-9144', 2);
 
@@ -180,7 +184,8 @@ CREATE TABLE `paciente` (
 INSERT INTO `paciente` (`cod_paciente`, `nome`, `endereco`, `telefone`, `foto`, `data_nascimento`, `sexo`, `cod_forma_pagamento`) VALUES
 (1, 'Caio', 'Rua Teste', '91234-5678', 'Foto', '2000-11-03', 'Masculino', 1),
 (2, 'Maria', 'Rua ABC', '91238-5452', 'Foto', '1998-07-12', 'Não Informar', 4),
-(3, 'Gabriel', 'Rua das Flores, 1312', '99872-1243', 'Foto', '1999-07-11', 'Masculino', 1);
+(3, 'Gabriel', 'Rua das Flores, 1312', '99872-1243', 'Foto', '1999-07-11', 'Masculino', 1),
+(4, 'Lukas', 'Rua ABC', '95161-6516', 'Foto', '1997-05-20', 'Masculino', 5);
 
 --
 -- Índices para tabelas despejadas
@@ -241,7 +246,7 @@ ALTER TABLE `paciente`
 -- AUTO_INCREMENT de tabela `consulta`
 --
 ALTER TABLE `consulta`
-  MODIFY `cod_consulta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `cod_consulta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `exame`
@@ -253,19 +258,19 @@ ALTER TABLE `exame`
 -- AUTO_INCREMENT de tabela `exame_agendado`
 --
 ALTER TABLE `exame_agendado`
-  MODIFY `cod_exame_agendado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `cod_exame_agendado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `forma_pagamento`
 --
 ALTER TABLE `forma_pagamento`
-  MODIFY `cod_forma_pagamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `cod_forma_pagamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `paciente`
 --
 ALTER TABLE `paciente`
-  MODIFY `cod_paciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `cod_paciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restrições para tabelas despejadas

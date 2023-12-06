@@ -81,15 +81,12 @@ public class HistoricoExamesWindow extends JFrame {
 
             if (userSelection == JFileChooser.APPROVE_OPTION) {
                 File selectedDirectory = fileChooser.getSelectedFile();
-                String filePath = new File(selectedDirectory, "relatorio_exames.csv").getPath();
+                String filePath = new File(selectedDirectory, "relatorio_exames.txt").getPath();
 
                 FileWriter writer = new FileWriter(filePath);
 
-                // Escrever cabeçalho
                 writer.append("Data,Hora,Exame,Paciente,Valor\n");
 
-                // Escrever dados dos exames
-                
                 for (ExameAgendado exameAg : listaExames) {
                     Exame exame = exameService.buscarPorCodigo(exameAg.getCodigoExame());
                     writer.append(String.format("%s,%s,%s,%s,%.2f\n",
@@ -184,7 +181,7 @@ public class HistoricoExamesWindow extends JFrame {
 		contentPane.add(btnVoltar);
 		
 		cbExames = new JComboBox();
-		cbExames.setBounds(45, 10, 113, 22);
+		cbExames.setBounds(45, 10, 139, 22);
 		contentPane.add(cbExames);
 		
 		JButton btnGerarRelatorio = new JButton("Gerar Relatório");
