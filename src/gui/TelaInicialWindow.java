@@ -44,6 +44,14 @@ public class TelaInicialWindow extends JFrame {
 		contentPane.setLayout(null);
 
 		JButton btnGerarRelatorio = new JButton("Gerar Relatório");
+		btnGerarRelatorio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GerarRelatorioWindow janelaRelatorio = new GerarRelatorioWindow();
+				janelaRelatorio.setVisible(true);
+				janelaRelatorio.setLocationRelativeTo(null);
+				dispose();
+			}
+		});
 		btnGerarRelatorio.setFont(new Font("Arial", Font.PLAIN, 12));
 		btnGerarRelatorio.setBounds(10, 109, 169, 23);
 		contentPane.add(btnGerarRelatorio);

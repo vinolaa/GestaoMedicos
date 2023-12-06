@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import entities.Especialidade;
 import entities.ExameAgendado;
 
 public class ExameAgendadoDAO {
@@ -44,15 +43,15 @@ public class ExameAgendadoDAO {
 		}
 	}
 
-	public List<ExameAgendado> buscarTodas(int tipo) throws SQLException {
+	public List<ExameAgendado> buscarTodas(int crm) throws SQLException {
 		PreparedStatement st = null;
 		ResultSet rs = null;
-
+		
 		try {
-			
-			st = conn.prepareStatement("SELECT * FROM exame_agendado WHERE cod_exame = ? ORDER BY data DESC, hora DESC");
 
-			st.setInt(1, tipo);
+			st = conn.prepareStatement("SELECT * FROM exame_agendado WHERE crm = ? ORDER BY data DESC, hora DESC");
+
+			st.setInt(1, crm);
 			rs = st.executeQuery();
 
 			List<ExameAgendado> listaExames = new ArrayList<>();
@@ -77,13 +76,12 @@ public class ExameAgendadoDAO {
 	}
 	
 	public List<ExameAgendado> buscarPorTipo(int tipo) throws SQLException {
-		
 		PreparedStatement st = null;
 		ResultSet rs = null;
 
 		try {
-
-			st = conn.prepareStatement("SELECT * FROM exame_agendado WHERE crm = ? ORDER BY data DESC, hora DESC");
+			
+			st = conn.prepareStatement("SELECT * FROM exame_agendado WHERE cod_exame = ? ORDER BY data DESC, hora DESC");
 
 			st.setInt(1, tipo);
 			rs = st.executeQuery();
@@ -99,7 +97,8 @@ public class ExameAgendadoDAO {
 				exame.setCodigoExame(rs.getInt("cod_exame"));
 				listaExames.add(exame);
 			}
-
+			
+			System.out.println(listaExames);
 			return listaExames;
 
 		} finally {
@@ -108,5 +107,6 @@ public class ExameAgendadoDAO {
 			BancoDados.desconectar();
 		}
 	}
+	
 
 }

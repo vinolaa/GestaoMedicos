@@ -146,7 +146,6 @@ public class CadastrarPacienteWindow extends JFrame {
 			paciente.setSexo(verificarSelecaoRadioButtonSexo());
 			Pagamento pagamento = (Pagamento) this.cbPagamento.getSelectedItem();
 			paciente.setFormaPagamento(pagamento.getCodigo());
-			System.out.println(paciente);
 			this.pacienteService.cadastrar(paciente);
 			JOptionPane.showMessageDialog(null, "Paciente cadastrado.", "Cadastro de paciente",
 					JOptionPane.INFORMATION_MESSAGE);

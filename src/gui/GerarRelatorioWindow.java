@@ -47,17 +47,17 @@ public class GerarRelatorioWindow extends JFrame {
 	public void initComponents() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 198, 216);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
-		JButton btnAgendaMedico = new JButton("Agenda Médico");
+		JButton btnAgendaMedico = new JButton("Voltar");
 		btnAgendaMedico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				AgendaMedicoWindow janelaAgendaMecido = new AgendaMedicoWindow();
-				janelaAgendaMecido.setVisible(true);
-				janelaAgendaMecido.setLocationRelativeTo(null);
+				TelaInicialWindow janelaTelaInicial = new TelaInicialWindow();
+				janelaTelaInicial.setVisible(true);
+				janelaTelaInicial.setLocationRelativeTo(null);
 				dispose();
 				
 			}
@@ -65,7 +65,7 @@ public class GerarRelatorioWindow extends JFrame {
 		contentPane.setLayout(null);
 
 		btnAgendaMedico.setFont(new Font("Arial", Font.PLAIN, 12));
-		btnAgendaMedico.setBounds(137, 36, 139, 23);
+		btnAgendaMedico.setBounds(26, 132, 130, 23);
 		contentPane.add(btnAgendaMedico);
 
 		setContentPane(contentPane);
@@ -81,7 +81,7 @@ public class GerarRelatorioWindow extends JFrame {
 			}
 		});
 		btnAgendaExame.setFont(new Font("Arial", Font.PLAIN, 12));
-		btnAgendaExame.setBounds(148, 101, 117, 23);
+		btnAgendaExame.setBounds(26, 37, 130, 23);
 		contentPane.add(btnAgendaExame);
 		
 		JButton btnAgendaPaciente = new JButton("Agenda Paciente");
@@ -95,7 +95,7 @@ public class GerarRelatorioWindow extends JFrame {
 			}
 		});
 		btnAgendaPaciente.setFont(new Font("Arial", Font.PLAIN, 12));
-		btnAgendaPaciente.setBounds(148, 182, 139, 23);
+		btnAgendaPaciente.setBounds(26, 86, 130, 23);
 		contentPane.add(btnAgendaPaciente);
 	}
 }

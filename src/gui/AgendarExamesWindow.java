@@ -117,7 +117,7 @@ public class AgendarExamesWindow extends JFrame {
 					JOptionPane.INFORMATION_MESSAGE);
 			
 		} catch (IOException | SQLException | ParseException | NumberFormatException e) {
-			JOptionPane.showMessageDialog(null, "Erro ao cadastrar um novo paciente." + e.getMessage(), "Cadastro",
+			JOptionPane.showMessageDialog(null, "Erro ao agendar exame." + e.getMessage(), "Agendar exame",
 					JOptionPane.ERROR_MESSAGE);
 		}
 		

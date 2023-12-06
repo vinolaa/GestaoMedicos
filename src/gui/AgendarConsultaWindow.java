@@ -7,7 +7,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
+import entities.Consulta;
 import entities.ExameAgendado;
+import service.ConsultaService;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -35,6 +37,8 @@ public class AgendarConsultaWindow extends JFrame {
 	private MaskFormatter mascaraData;
 	private MaskFormatter mascaraHora;
 
+	private ConsultaService consultaService;
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -50,12 +54,14 @@ public class AgendarConsultaWindow extends JFrame {
 	}
 
 	public AgendarConsultaWindow() {
+		
+		consultaService = new ConsultaService();
 		criarMascaraData();
 		criarMascaraHora();
 		initComponents();
 
 	}
-	
+
 	private void criarMascaraData() {
 		try {
 			this.mascaraData = new MaskFormatter("##/##/####");
@@ -63,7 +69,7 @@ public class AgendarConsultaWindow extends JFrame {
 			System.out.println("ERRO: " + e.getMessage());
 		}
 	}
-	
+
 	private void criarMascaraHora() {
 		try {
 			this.mascaraHora = new MaskFormatter("##:##");
@@ -119,10 +125,27 @@ public class AgendarConsultaWindow extends JFrame {
 		txtMedico.setBounds(61, 94, 174, 20);
 		contentPane.add(txtMedico);
 
+		String a = txtMedico.getText();
 		JButton btnAgendar = new JButton("Agendar");
 		btnAgendar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
+				try {
+					Consulta consulta = new Consulta();
+					SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+					consulta.setPaciente(txtPaciente.getText());
+					consulta.setMedico(txtMedico.getText());
+					consulta.setDataConsulta(new java.sql.Date(sdf.parse(txtData.getText()).getTime()));
+					consulta.setHoraCosulta(Time.valueOf(LocalTime.parse(txtHora.getText())));
+					consultaService.agendar(consulta);
+					JOptionPane.showMessageDialog(null, "Consulta agendada com sucesso.", "Consulta",
+							JOptionPane.INFORMATION_MESSAGE);
+
+				} catch (IOException | SQLException | ParseException | NumberFormatException e1) {
+					JOptionPane.showMessageDialog(null, "Erro ao agendar consulta." + e1.getMessage(), "Agendar exame",
+							JOptionPane.ERROR_MESSAGE);
+				}
+
 			}
 		});
 		btnAgendar.setFont(new Font("Arial", Font.PLAIN, 12));

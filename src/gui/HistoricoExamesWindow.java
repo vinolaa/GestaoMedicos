@@ -45,7 +45,7 @@ public class HistoricoExamesWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AgendaMedicoWindow frame = new AgendaMedicoWindow();
+					HistoricoExamesWindow frame = new HistoricoExamesWindow();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -157,7 +157,7 @@ public class HistoricoExamesWindow extends JFrame {
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					listaExames = exameAgenadoService.buscarTodas(cbExames.getSelectedIndex() + 1);
+					listaExames = exameAgenadoService.buscarPorTipo(cbExames.getSelectedIndex() + 1);
 					atualizarTabela();
 				} catch (NumberFormatException | SQLException | IOException e1) {
 					JOptionPane.showMessageDialog(null, "Erro ao buscar exames.", "Agenda exames",

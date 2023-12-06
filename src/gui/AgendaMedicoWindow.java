@@ -8,11 +8,13 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -32,6 +34,9 @@ public class AgendaMedicoWindow extends JFrame {
 	private JPanel contentPane;
 	private JTable tblAgenda;
 	private JTextField txtCrm;
+	private JRadioButton rdExame;
+	private JRadioButton rdConsulta;
+	private ButtonGroup radioGroup;
 
 	private ExameAgendadoService exameAgenadoService;
 	private ExameService exameService;
@@ -50,9 +55,9 @@ public class AgendaMedicoWindow extends JFrame {
 			}
 		});
 	}
-	
+
 	public AgendaMedicoWindow() {
-		
+
 		initComponents();
 	}
 
@@ -65,16 +70,28 @@ public class AgendaMedicoWindow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JPanel painelAlunos = new JPanel();
-		painelAlunos.setLayout(null);
-		painelAlunos.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Agenda",
+		rdExame = new JRadioButton("Exame");
+		rdExame.setBounds(158, 10, 80, 23);
+		contentPane.add(rdExame);
+
+		rdConsulta = new JRadioButton("Consulta");
+		rdConsulta.setBounds(158, 36, 80, 23);
+		contentPane.add(rdConsulta);
+
+		radioGroup = new ButtonGroup();
+		radioGroup.add(rdExame);
+		radioGroup.add(rdConsulta);
+
+		JPanel painelAgenda = new JPanel();
+		painelAgenda.setLayout(null);
+		painelAgenda.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Agenda",
 				TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		painelAlunos.setBounds(10, 60, 465, 269);
-		contentPane.add(painelAlunos);
+		painelAgenda.setBounds(10, 60, 465, 269);
+		contentPane.add(painelAgenda);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 23, 446, 235);
-		painelAlunos.add(scrollPane);
+		painelAgenda.add(scrollPane);
 
 		tblAgenda = new JTable();
 		DefaultTableModel tblModel = new DefaultTableModel(new Object[][] {},
@@ -96,18 +113,29 @@ public class AgendaMedicoWindow extends JFrame {
 		contentPane.add(lblCrm);
 
 		JButton btnBuscar = new JButton("Buscar");
-		btnBuscar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					exameAgenadoService = new ExameAgendadoService();
-					listaExames = exameAgenadoService.buscarTodas(Integer.parseInt(txtCrm.getText()));
-					atualizarTabela();
-				} catch (NumberFormatException | SQLException | IOException e1) {
-					JOptionPane.showMessageDialog(null, "Erro ao buscar exames.", "Agenda exames",
-							JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		});
+        btnBuscar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                try {
+                    if (rdExame.isSelected()) {
+  
+                        exameAgenadoService = new ExameAgendadoService();
+                        listaExames = exameAgenadoService.buscarTodas(Integer.parseInt(txtCrm.getText()));
+                        atualizarTabela();
+                    } else if (rdConsulta.isSelected()) {
+                        // Chame a função relacionada a Consulta
+                        // Adicione aqui o código relacionado a Consulta
+                        // ...
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Selecione Exame ou Consulta", "Agenda exames",
+                                JOptionPane.WARNING_MESSAGE);
+                    }
+                } catch (NumberFormatException | SQLException | IOException e1) {
+                    JOptionPane.showMessageDialog(null, "Erro ao buscar exames.", "Agenda exames",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
 
 		btnBuscar.setFont(new Font("Arial", Font.PLAIN, 12));
 		btnBuscar.setBounds(255, 10, 100, 23);
@@ -136,22 +164,22 @@ public class AgendaMedicoWindow extends JFrame {
 	}
 
 	private void atualizarTabela() {
-	    DefaultTableModel model = (DefaultTableModel) tblAgenda.getModel();
-	    model.setRowCount(0);
+		DefaultTableModel model = (DefaultTableModel) tblAgenda.getModel();
+		model.setRowCount(0);
 
-	    for (ExameAgendado exameAg : listaExames) {
-	        try {
-	            exameService = new ExameService();
-	            Exame exame = exameService.buscarPorCodigo(exameAg.getCodigoExame());
-	            model.addRow(new Object[] { exameAg.getData(), exameAg.getHora(), exame.getNome(),
-	                    exameAg.getNomePaciente(), exameAg.getValorPago() });
-	        } catch (SQLException | IOException e) {
-	            JOptionPane.showMessageDialog(null, "Nenhum tipo deste exame encontrado.", "Agenda exames",
-	                    JOptionPane.ERROR_MESSAGE);
-	        }
-	    }
+		for (ExameAgendado exameAg : listaExames) {
+			try {
+				exameService = new ExameService();
+				Exame exame = exameService.buscarPorCodigo(exameAg.getCodigoExame());
+				model.addRow(new Object[] { exameAg.getData(), exameAg.getHora(), exame.getNome(),
+						exameAg.getNomePaciente(), exameAg.getValorPago() });
+			} catch (SQLException | IOException e) {
+				JOptionPane.showMessageDialog(null, "Nenhum tipo deste exame encontrado.", "Agenda exames",
+						JOptionPane.ERROR_MESSAGE);
+			}
+		}
 
-	    definirLargurasColunas();
+		definirLargurasColunas();
 	}
 
 }

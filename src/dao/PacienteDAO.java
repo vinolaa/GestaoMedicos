@@ -2,6 +2,7 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import entities.Paciente;
@@ -14,7 +15,7 @@ public class PacienteDAO {
 
 		this.conn = conn;
 	}
-	
+
 	public void cadastrar(Paciente paciente) throws SQLException {
 
 		PreparedStatement st = null;
@@ -40,4 +41,28 @@ public class PacienteDAO {
 			BancoDados.desconectar();
 		}
 	}
+
+	public int buscarCodigoPorNome(String nome) throws SQLException {
+		PreparedStatement st = null;
+		ResultSet rs = null;
+
+		try {
+			st = conn.prepareStatement("SELECT * FROM paciente WHERE nome = ?");
+			st.setString(1, nome);
+			rs = st.executeQuery();
+
+			if (rs.next()) {
+				return rs.getInt("cod_paciente");
+			} else {
+
+				return -1;
+			}
+
+		} finally {
+			BancoDados.finalizarStatement(st);
+			BancoDados.finalizarResultSet(rs);
+			BancoDados.desconectar();
+		}
+	}
+
 }

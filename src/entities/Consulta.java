@@ -1,45 +1,55 @@
 package entities;
 
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Time;
 
 public class Consulta {
-	private Paciente paciente;
-	private Medico medico;
-	private Date horarioConsulta;
+	private String paciente;
+	private String medico;
+	private Date dataConsulta;
+	private Time horaCosulta;
 
 	public Consulta() {
-		
-	}
-	
-	public Consulta(Paciente paciente, Medico medico, Date horarioConsulta) {
-		super();
-		this.paciente = paciente;
-		this.medico = medico;
-		this.horarioConsulta = horarioConsulta;
+
 	}
 
-	public Paciente getPaciente() {
+	public Consulta(String paciente, String medico, Date horarioConsulta) {
+	
+		this.paciente = paciente;
+		this.medico = medico;
+		this.dataConsulta = horarioConsulta;
+	}
+
+	public String getPaciente() {
 		return paciente;
 	}
 
-	public void setPaciente(Paciente paciente) {
+	public void setPaciente(String paciente) {
 		this.paciente = paciente;
 	}
 
-	public Medico getMedico() {
+	public String getMedico() {
 		return medico;
 	}
 
-	public void setMedico(Medico medico) {
+	public void setMedico(String medico) {
 		this.medico = medico;
 	}
 
-	public Date getHorarioConsulta() {
-		return horarioConsulta;
+	public Date getDataConsulta() {
+		return dataConsulta;
 	}
 
-	public void setHorarioConsulta(Date horarioConsulta) {
-		this.horarioConsulta = horarioConsulta;
+	public void setDataConsulta(Date dataConsulta) {
+		this.dataConsulta = dataConsulta;
+	}
+
+	public Time getHoraCosulta() {
+		return horaCosulta;
+	}
+
+	public void setHoraCosulta(Time horaCosulta) {
+		this.horaCosulta = horaCosulta;
 	}
 
 }
