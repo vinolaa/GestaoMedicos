@@ -3,6 +3,7 @@ package service;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import dao.BancoDados;
 import dao.ConsultaDAO;
@@ -26,5 +27,11 @@ public class ConsultaService {
 		System.out.println("Codigo: " + cod_paciente);
 		conn = BancoDados.conectar();
 		new ConsultaDAO(conn).agendar(consulta, cod_paciente, crm);
+	}
+
+	public List<Consulta> buscarTodas(int crm) throws SQLException, IOException {
+
+		Connection conn = BancoDados.conectar();
+		return new ConsultaDAO(conn).buscarTodas(crm);
 	}
 }

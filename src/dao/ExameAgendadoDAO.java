@@ -49,7 +49,7 @@ public class ExameAgendadoDAO {
 		
 		try {
 
-			st = conn.prepareStatement("SELECT * FROM exame_agendado WHERE crm = ? ORDER BY data DESC, hora DESC");
+			st = conn.prepareStatement("SELECT * FROM exame_agendado WHERE crm = ? ORDER BY data ASC, hora ASC");
 
 			st.setInt(1, crm);
 			rs = st.executeQuery();

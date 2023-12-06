@@ -14,7 +14,7 @@ public class Consulta {
 	}
 
 	public Consulta(String paciente, String medico, Date horarioConsulta) {
-	
+
 		this.paciente = paciente;
 		this.medico = medico;
 		this.dataConsulta = horarioConsulta;
@@ -50,6 +50,12 @@ public class Consulta {
 
 	public void setHoraCosulta(Time horaCosulta) {
 		this.horaCosulta = horaCosulta;
+	}
+
+	@Override
+	public String toString() {
+		return "Consulta [paciente=" + paciente + ", medico=" + medico + ", dataConsulta=" + dataConsulta
+				+ ", horaCosulta=" + horaCosulta + "]";
 	}
 
 }

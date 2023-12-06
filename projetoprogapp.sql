@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 05/12/2023 às 17:37
+-- Tempo de geração: 06/12/2023 às 15:38
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -34,6 +34,14 @@ CREATE TABLE `consulta` (
   `dia` date NOT NULL,
   `hora` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Despejando dados para a tabela `consulta`
+--
+
+INSERT INTO `consulta` (`cod_consulta`, `cod_paciente`, `crm`, `dia`, `hora`) VALUES
+(1, 2, 998877, '2023-12-20', '15:00:00'),
+(2, 1, 998877, '2023-12-20', '14:30:00');
 
 -- --------------------------------------------------------
 
@@ -100,7 +108,8 @@ CREATE TABLE `exame_agendado` (
 INSERT INTO `exame_agendado` (`nome_paciente`, `crm`, `data`, `hora`, `valor_pago`, `cod_exame_agendado`, `cod_exame`) VALUES
 ('Gabriel', 123456, '2023-03-11', '09:30:00', 50, 1, 1),
 ('Caio', 998877, '2023-12-04', '10:00:00', 50, 2, 1),
-('Caio', 123456, '2023-12-05', '14:30:00', 80, 3, 1);
+('Caio', 123456, '2023-12-05', '14:30:00', 80, 3, 2),
+('Maria', 998877, '2023-12-07', '10:30:00', 80, 4, 3);
 
 -- --------------------------------------------------------
 
@@ -232,7 +241,7 @@ ALTER TABLE `paciente`
 -- AUTO_INCREMENT de tabela `consulta`
 --
 ALTER TABLE `consulta`
-  MODIFY `cod_consulta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cod_consulta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `exame`
@@ -244,7 +253,7 @@ ALTER TABLE `exame`
 -- AUTO_INCREMENT de tabela `exame_agendado`
 --
 ALTER TABLE `exame_agendado`
-  MODIFY `cod_exame_agendado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `cod_exame_agendado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `forma_pagamento`

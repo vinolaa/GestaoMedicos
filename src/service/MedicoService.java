@@ -19,10 +19,16 @@ public class MedicoService {
 		Connection conn = BancoDados.conectar();
 		new MedicoDAO(conn).cadastrar(medico);
 	}
-	
+
 	public int buscarCrmPorNome(String nome) throws SQLException, IOException {
-		
+
 		Connection conn = BancoDados.conectar();
 		return new MedicoDAO(conn).buscarCrmPorNome(nome);
+	}
+
+	public String buscarNomePorCrm(int crm) throws SQLException, IOException {
+
+		Connection conn = BancoDados.conectar();
+		return new MedicoDAO(conn).buscarNomePorCrm(crm);
 	}
 }

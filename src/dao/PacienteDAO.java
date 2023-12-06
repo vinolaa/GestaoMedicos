@@ -65,4 +65,29 @@ public class PacienteDAO {
 		}
 	}
 
+	public String buscarNomePorCodigo(int cod_paciente) throws SQLException {
+		PreparedStatement st = null;
+		ResultSet rs = null;
+
+		try {
+			st = conn.prepareStatement("SELECT * FROM paciente WHERE cod_paciente = ?");
+			st.setInt(1, cod_paciente);
+			rs = st.executeQuery();
+
+			if (rs.next()) {
+
+				return rs.getString("nome");
+
+			} else {
+
+				return "";
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
 }

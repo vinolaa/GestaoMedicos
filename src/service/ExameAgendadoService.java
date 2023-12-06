@@ -23,7 +23,6 @@ public class ExameAgendadoService {
 
 	public List<ExameAgendado> buscarTodas(int crm) throws SQLException, IOException {
 
-		System.out.println("Exame Service");
 		Connection conn = BancoDados.conectar();
 		return new ExameAgendadoDAO(conn).buscarTodas(crm);
 	}
